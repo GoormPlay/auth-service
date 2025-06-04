@@ -67,6 +67,7 @@ public class AuthServiceImpl implements AuthService{
         if(authRepository.existsByUsername(dto.getUsername())) throw new AuthException(ALREADY_EXIST_MEMBER);
 
         try {
+            log.info("보낼 member 생성 요청 DTO: {}", dto);
            String memberId = memberClient.signUpMember(dto);
            log.info("memberID : "+ memberId);
             Auth auth = Auth.builder()
@@ -82,6 +83,7 @@ public class AuthServiceImpl implements AuthService{
         } catch (Exception e) {
             // 실패 시 보상 트랜잭션 실행
             memberClient.deleteMember(dto.getUsername());
+            log.error("signup 요청 실패: {}", e.getMessage());
             throw new AuthException(SIGN_UP_FAIL);
         }
     }
