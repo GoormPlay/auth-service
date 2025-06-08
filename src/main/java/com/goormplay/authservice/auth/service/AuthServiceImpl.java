@@ -50,13 +50,14 @@ public class AuthServiceImpl implements AuthService{
         auth.setLastLoginAt(LocalDateTime.now());
 
         String accessToken = createJwt(MemberDto.builder().
-                memberId(auth.getMemberid()).
+                memberId(auth.getMemberId()).
                 role(auth.getRole())
                 .username(auth.getUsername())
                 .build());
         return SignInResponseDto.builder()
                 .accessToken(accessToken)
                 .username(auth.getUsername())
+                .userId(auth.getMemberId())
                 .build();
     }
 
@@ -76,7 +77,7 @@ public class AuthServiceImpl implements AuthService{
                     .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                     .role(Role.USER)
                     .createdAt(LocalDateTime.now())
-                    .Memberid(memberId)
+                    .memberId(memberId)
                     .build();
             authRepository.save(auth);
 
@@ -103,7 +104,7 @@ public class AuthServiceImpl implements AuthService{
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .role(Role.USER)
                 .createdAt(LocalDateTime.now())
-                .Memberid(memberId)
+                .memberId(memberId)
                 .build();
         authRepository.save(auth);
         log.info("테스트 계정 생성 완료: {}", dto.getUsername());

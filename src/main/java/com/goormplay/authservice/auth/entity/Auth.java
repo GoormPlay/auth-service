@@ -36,7 +36,7 @@ public class Auth {
     @Column
     private LocalDateTime lastLoginAt;
 
-    private String Memberid;
+    private String memberId;
 
 //    @Column(nullable = false)
 //    private boolean enabled = true; 회원 탈퇴 기능
