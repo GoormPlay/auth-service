@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "member-service" ,
-        url = "http://member-service.default.svc.cluster.local:8082",
+        url = "http://member-service.member.svc.cluster.local:8082",
         configuration = FeignHeaderConfig.class)
 public interface MemberClient {
     @PostMapping("/member/client")//회원가입
