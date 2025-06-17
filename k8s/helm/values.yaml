@@ -1,0 +1,11 @@
+image:
+  repository: roin09/auth-service
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 8081
+
+env:
+  useConfigMap: true
+  useSecret: true
