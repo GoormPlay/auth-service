@@ -2,6 +2,7 @@ apiVersion: v2
 name: auth-service
 description: Helm chart for auth-service
 version: 0.1.0
+type: application
 dependencies:
   - name: base-template
     version: 0.1.0
